@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "About : Home";
+}
+
+<h2>This is About Us Page</h2>
+<a href="/Home/">Home</a>
+<a href="/Home/About">About Us</a>
+<a href="/Home/Contact">Contact Us</a>
+
+<h1>@ViewBag.FullName</h1>
+<div>
+    <ul>
+        @foreach(var item in ViewBag.colorList)
+            {
+                <li>@item</li>
+            }
+    </ul>
+</div>
+<h1>Employee List</h1>
+<div>
+    <ul>
+        @foreach (var item in ViewBag.empList)
+        {
+            <li>Id - @item.Id</li>
+            <li>Name -  @item.Name</li>
+            <li>Address - @item.Address</li>
+        }
+    </ul>
+</div>

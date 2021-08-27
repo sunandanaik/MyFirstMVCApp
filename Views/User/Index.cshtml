@@ -1,0 +1,63 @@
+﻿@model WebApplication3.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index- User</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Using Strongly Binding Way</h2>
+    <div> 
+        @Html.ValidationSummary()
+
+        @using(Html.BeginForm("UserData", "User", FormMethod.Post)) 
+        { 
+        <div>
+            <div>
+                @Html.LabelFor(x => x.FirstName)
+                @Html.TextBoxFor(x => x.FirstName)
+                @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "error" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.LastName)
+                @Html.TextBoxFor(x => x.LastName)
+                @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "error" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.Email)
+                @Html.TextBoxFor(x => x.Email)
+                @Html.ValidationMessageFor(x => x.Email,"", new { @class="error" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.Age)
+                @Html.TextBoxFor(x => x.Age)
+                @Html.ValidationMessageFor(x => x.Age, "", new { @class = "error" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.city)
+                @Html.TextBoxFor(x => x.city)
+                @Html.ValidationMessageFor(x => x.city, "", new { @class = "error" })
+            </div>
+            <div>
+                <input type="submit" value="Save" />
+            </div>
+        </div>
+        }
+    </div>
+</body>
+</html>

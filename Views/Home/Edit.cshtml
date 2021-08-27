@@ -1,0 +1,33 @@
+﻿@using WebApplication3.Models
+@model Employee
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <div>
+        @Html.DisplayName("Id") : @Html.Editor("Id")
+        <br />
+        <br />
+        @Html.DisplayNameFor(e => e.Name) : @Html.EditorFor(e => e.Name)
+        <br />
+        @Html.DisplayNameFor(e => e.dob) : @Html.EditorFor(e => e.dob)
+        <br />
+
+        @using(Html.BeginForm("myForm")) 
+        {
+            @Html.EditorForModel()
+            <br /><br />
+            <input type="submit" value="Send" />
+        }
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿@model WebApplication3.Models.Employee
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index- Employee</title>
+    <style>
+        header {
+            height: 200px;
+            background-color: aliceblue;
+        }
+
+        footer {
+            height: 200px;
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>This is Header</h2>
+    </header>
+    <div>
+        <h3>This is Index Page</h3>
+        <div>
+            <h1>This is Employee Index Page</h1>
+            <a href="/Employees">Get Employee List</a>
+            <a href="/AddEmployees">Add Employee</a>
+        </div>
+
+        @using(Html.BeginForm("", "", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+
+            @Html.EditorFor(x => x.Name)<br /><br />
+            @Html.EditorFor(x => x.Address)<br /><br />
+            @Html.CheckBoxFor(x => x.isEmployee)<br /><br />
+            @Html.EditorFor(x => x.dob)<br /><br />
+
+            <input type="submit" value="Submit" />
+        }
+    </div>
+    <footer>
+        <h2>Copyright footer 2021</h2>
+    </footer>
+</body>
+</html>

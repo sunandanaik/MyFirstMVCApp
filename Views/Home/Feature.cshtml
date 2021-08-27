@@ -1,0 +1,35 @@
+﻿
+@section pageName
+{
+
+    <h1>Sunanda Naik</h1>
+
+}
+
+@section renderName
+{
+
+    <h1>Sunanda Naik</h1>
+
+}
+<h1>Feature Home Page</h1>
+@section scriptName
+{
+
+    <script>
+        document.write("feature script code here");
+    </script>
+
+}
+<h2 style="color:saddlebrown;"><em>Hello From Feature Page</em></h2>
+@{
+    var page = Page;
+    var fname = Page[0];
+    var course = Page[1];
+    var age = Page[2];
+}
+<ul>
+    <li>@fname</li>
+    <li>@course</li>
+    <li>@age</li>
+</ul>

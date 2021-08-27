@@ -1,0 +1,309 @@
+﻿@using WebApplication3.Models
+@{
+    ViewBag.Title = "Index:Home";
+}
+@model WebApplication3.Models.Employee
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<style>
+    .display-label {
+        width: 300px;
+        padding: 5px;
+        background-color: lightgray;
+    }
+
+    .display-field {
+        width: 300px;
+        padding: 5px;
+        background-color: yellow;
+        margin-left: 20px !important;
+    }
+    
+</style>
+<h2>This is Index Page</h2>
+<label id="lbl"></label>
+<input type="text" id="txt1"/>
+<input type="button" value="Click Me" onclick="handleBtn()"/>
+
+<div>
+    @helper myListHelper(string[] str)
+    {
+        if (str.Length == 0)
+        {
+            <p>Items Doesnt exist.</p>
+        }
+        else
+        {
+            <ul>
+                @foreach (var item in str)
+                {
+                    <li>@item</li>
+                }
+            </ul>
+        }
+
+    }
+</div>
+<div>
+    @{
+        string[] cities = new string[] { "Mumbai", "London", "New York" };
+        string[] authors = { "Mike Gold", "Don Box", "Sundar Lal", "Neel Beniwal" };
+        string[] names = { };
+    }
+    @myListHelper(cities)
+    @myListHelper(authors)
+    @myListHelper(names)
+</div>
+<div>
+    @Html.ActionLink("Click Me", "About")
+    @Html.ActionLink("View Employee", "EmpProfile", "Employee", new { id = 1 }, null)
+    @Html.ActionLink("Visit Game", "Name", "Game", new { name = "Tiger" }, null)
+    @Html.TextBox("txt1", "Enter Name", new { @class = "form-control" })
+    @Html.TextBox("txt2", "Enter Email", new { id = "emailtxt", @class = "form-control", style = "width:200px" })
+    @Html.CheckBox("chkbox1", true)
+    @Html.Password("pwdtxt")
+    <h1>Lambda Expression</h1>
+    <p>
+        @{
+            Func<int, int> square = num => num * num;
+    }
+</p>
+<h3><span style="color:mediumvioletred">@square(5)</span></h3>
+</div>
+    
+    <div>
+        <a href="/Home/">Home</a>
+        <a href="/Home/About">About Us</a>
+        <a href="/Home/Contact">Contact Us</a>
+    </div>
+    <h3>This is Home Index Page</h3>
+    <div>
+        <h1>This is Employee Index Page</h1>
+        <a href="/Employees">Get Employee List</a>
+        <a href="/AddEmployees">Add Employee</a>
+    </div>
+<div>
+    @{
+        Employee emp = new Employee();
+        emp.Id = 105;
+        emp.Name = "Hrutika";
+        emp.Address = "Goa";
+    }
+    <ol>
+        <li>@emp.Id</li>
+        <li>@emp.Name</li>
+        <li>@emp.Address</li>
+    </ol>
+</div>
+<div>
+    <table>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>@Model.Id</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>@Model.Address</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    @DateTime.Now
+
+    <p>@(5-3)</p>
+    <p>
+        @{
+            var a = 1;
+            var b = 2;
+            var c = a + b;
+            var tmrwTime = DateTime.Now.AddDays(1);
+            var colorList = new List<string>() { "red", "yellow", "green" };
+    }
+</p>
+<p>@c</p>
+<p>Tomorrow Time : @tmrwTime</p>
+<p>@colorList.FirstOrDefault()</p>
+<p>List of Colors:</p>
+<ul>
+    @{ for (var i = 0; i < colorList.Count; i++)
+        {
+            <li>@colorList[i]</li>
+        }
+
+
+    }
+</ul>
+<p>Email id: sungitmca@gmail.com</p>
+<p>My Twitter Account: @@sun_coder</p>
+</div>
+<div>
+    @{
+        bool flag = true;
+        if (flag)
+        {
+            <h2>Hello, Conditional if Statement !!</h2>
+        }
+        else
+        {
+            <h3>Hello , Else Statement!!</h3>
+        }
+    }
+    <h1>Ternary Operator</h1>
+    <p>
+        @{
+            var a1 = 10;
+            var b1 = 5;
+        }
+    </p>
+    <h3>Value is - @(a1==b1?a1:b1)</h3>
+    <h1>Foreach</h1>
+    @{ var mylist = new List<int>() { 1, 2, 3, 4, 5 };}
+
+    <ul>
+        @foreach (var l in mylist)
+        {
+            <li>@l</li>
+        }
+    </ul>
+    <div>
+        @Html.DisplayName("Id")
+        <br /><br />
+        @Html.DisplayNameFor(e => e.Id)
+        <br /><br />
+        @Html.DisplayName("Name")
+        <br /><br />
+        @Html.DisplayText("Name")
+        <br /><br />
+        @Html.DisplayTextFor(e => e.Name)
+        <br />
+        @Html.DisplayForModel()
+    </div>
+</div>
+<div>
+    <section>
+        <h1>Passing Using Parameters</h1>
+        @using (Html.BeginForm("PersonData", "Home"))
+        {
+            <input type="text" name="fname" /><br /><br />
+            <input type="text" name="lname" /><br /><br />
+            <input type="submit" value="Submit" />
+
+        }
+    </section>
+    <section>
+        <h1>Passing Using Request</h1>
+        @using (Html.BeginForm("PersonDataReq", "Home"))
+        {
+            <input type="text" name="fname" /><br /><br />
+            <input type="text" name="lname" /><br /><br />
+            <input type="submit" value="Submit" />
+
+        }
+    </section>
+    <section>
+        <h1>Passing Using Form Collection</h1>
+        @using (Html.BeginForm("PersonDataForm", "Home"))
+        {
+            <input type="text" name="fname" /><br /><br />
+            <input type="text" name="lname" /><br /><br />
+            <input type="submit" value="Submit" />
+
+        }
+    </section>
+    <section>
+        <h1>Passing Using Strongly Binding</h1>
+        @using (Html.BeginForm("PersonDataBind", "Home"))
+        {
+            @Html.TextAreaFor(e => e.Name)<br /><br />
+
+            <input type="submit" value="Submit" />
+
+        }
+    </section>
+</div>
+<h1>To get data using Ajax</h1>
+<div>
+    <h2>Id</h2> - <h2 id="studId"></h2>
+    <h2>Name</h2> - <h2 id="studName"></h2>
+    <h2>Course</h2> - <h2 id="studCourse"></h2>
+    <h2>Address</h2> - <h2 id="studAddress"></h2>
+    <input type="button" value="Click Me" onclick="handleBtn()" />
+</div>
+<div>
+    <h1>To Post data using Ajax</h1>
+    <form>
+        <input type="text" id="stdid" placeholder="Enter Student id"/>
+        <br/><br/>
+        <input type="text" id="stdname" placeholder="Enter Student Name"/>
+        <br/><br/>
+        <input type="text" id="stdcourse" placeholder="Enter Course"/>
+        <br/><br/>
+        <input type="button" value="Send" onclick="GetData()"/>
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+        //alert("DOM is ready.");
+        $("#lbl").text("I am added from jQuery");
+    });
+    function handleBtn()
+    {
+        var txtvalue = $("#txt1").val();
+        $("#lbl").text("Hello , " + txtvalue);
+
+        //Using AJAX
+        $.ajax({
+            url: "/Home/GetStudent",
+            method: "GET",
+            success: function (data) {
+                console.log(data);
+                data = JSON.parse(data);//converts json string into object
+                console.log(data);
+
+                //To bind data to above field
+                $("#studId").text(data.Id);
+                $("#studName").text(data.Name);
+                $("#studCourse").text(data.course);
+                $("#studAddress").text(data.address.houseno);
+            },
+            error: function (err) {
+                console.error(err);
+            }
+        })
+    }
+    //-----------------------------------------
+    function GetData() {
+        var sid = $("#stdid").val();
+        var sname = $("#stdname").val();
+        var scourse = $("#stdcourse").val();
+
+        var obj = {
+            Id: sid,
+            Name: sname,
+            course: scourse
+        };
+        SubmitForm(obj);
+    }
+
+    function SubmitForm(obj) {
+        $.ajax({
+            url: "/Home/AddStudent",
+            method: "POST",
+            data: obj,
+            success: function () {
+                alert("Data Saved !!!");
+            },
+            error: function (err) {
+                console.error(err);
+            }
+
+        })
+    }
+</script>
+
+

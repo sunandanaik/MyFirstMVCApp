@@ -1,0 +1,44 @@
+﻿@model WebApplication3.Models.Client
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index-Client</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>This is Index of Client</h1>
+    @Html.ValidationSummary()
+    <div>
+
+        @using (Html.BeginForm("Create", "Client", FormMethod.Post))
+        {
+            @Html.TextBox("Name")<br />
+            @Html.ValidationMessage("Name required")<br />
+            @Html.TextBox("Email")<br />
+            @Html.ValidationMessage("Email required")<br />
+            @Html.TextBox("Age")<br />
+            @Html.ValidationMessage("Age required")<br />
+            @Html.TextBox("City")<br />
+            @Html.ValidationMessage("city required")<br />
+            <input type="submit" value="Click" />
+        }
+    </div>
+    <hr />
+
+</body>
+</html>

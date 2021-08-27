@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Contact : Home";
+}
+<h2>Value from TempData - @ViewBag.TKey</h2>
+
+<h2>This is Contact Page</h2>
+<a href="/Home/">Home</a>
+<a href="/Home/About">About Us</a>
+<a href="/Home/Contact">Contact Us</a>
+<div>
+    <h3>Marks is : @ViewData["marks"]</h3>
+    <p>Colors are:</p>
+    <ul>
+        @foreach(var c in (List<string>)ViewData["colors"])
+            {
+                <li>@c</li>
+            }
+    </ul>
+</div>
+
